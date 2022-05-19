@@ -1,0 +1,26 @@
+server:
+  port: 8868
+
+spring:
+  application:
+    name: gateway-client-8868
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true   # true就要加
+          lower-case-service-id: true
+      routes:
+        - id: add-supplier-test-8044
+          uri: lb://add-supplier-test-8044
+          predicates:
+            - Path=/addAll
+
+eureka:
+  instance:
+    instance-id: id-gateway-client-8868
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://172.23.80.1:8848/eureka/

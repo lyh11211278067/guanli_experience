@@ -1,0 +1,35 @@
+server:
+  port: 8044
+
+#http://localhost:8044/doc.html
+
+eureka:
+  instance:
+    instance-id: id-add-supplier-test-8044
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://172.23.80.1:8848/eureka/ #Eureka地址
+
+spring:
+  application:
+    name: add-supplier-test-8044
+  datasource:
+    url: jdbc:mysql://localhost:3306/imooc-springboot-learn?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    #type: com.zaxxer.hikari.HikariDataSource   #数据源的类型 HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver   #mysql/mariaDB驱动
+
+
+# 这里是用来查找mybatis文件所需要的路径
+mybatis:
+  mapper-locations: mapper/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  # 实体类
+  type-aliases-package: com.test.pojo
